@@ -17,8 +17,12 @@ const GlobalStyle = createGlobalStyle`
         font-family: Montserrat, Sans-Serif;
     }
 
-    h1, h2, h3, h4, h5 {
+    h1, h2, h3, h4, h5, legend {
         color: var(--white);
+    }
+
+    fieldset {
+        margin: 15px;
     }
 
     input {
@@ -63,7 +67,7 @@ export const Card = styled.div`
     flex-direction: column;
     width: 300px;
     align-items: center;
-    border: 2px solid ${gold};
+    border: 2px solid ${white};
     padding: 10px 30px 30px 30px;
 `;
 
@@ -72,7 +76,7 @@ export const CardBot = styled.div`
     flex-direction: column;
     width: 300px;
     align-items: center;
-    border: 2px solid ${gold};
+    border: 2px solid ${white};
     padding: 10px 30px 30px 30px;
 `;
 
@@ -116,7 +120,7 @@ export const Input = styled.input`
 
 export const List = styled.li`
   display: grid;
-  grid-template-columns: 20% 20% 10% 10% 10% 25% ;
+  grid-template-columns: 20% 10% 10% 10% 10% 10% 25% ;
   grid-gap: 10px;
   border-bottom: 1px solid gold;
   text-align: center;

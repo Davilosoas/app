@@ -4,6 +4,8 @@ import { ReactComponent as Logo } from '../../assets/logo-blue.svg'
 import api from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { setAdminKey, setID, setName, setToken } from '../../services/auth'
+import { ToastContainer } from 'react-toastify'
+import { toastSuccess } from "../../components/Toast";
 
 function Login() {
     const history = useNavigate()
@@ -23,8 +25,9 @@ function Login() {
                 setID(result.data.user.id)
                 setName(result.data.user.name)
                 setAdminKey(result.data.user.administrator)
-                history("/main");
-            })
+                toastSuccess("Bem-vindo de volta")
+            }).then(() => setTimeout(() => history("/main"), 4000))
+
         } catch (error) {
             console.log(error)
         }
@@ -35,8 +38,9 @@ function Login() {
         <Container>
             <div>
                 <Logo width={300} height={150} />
+                <ToastContainer />
                 <Card>
-                    <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                         <H3>E-mail</H3>
                         <Input type={'email'} onChange={e => setEmail(e.target.value)} />
                         <H3>Senha</H3>

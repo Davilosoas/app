@@ -6,6 +6,8 @@ import { getAdminKey, getToken, logoutToken } from "../../services/auth";
 import { dataUser } from "../../utils/variableGlobal";
 import Header from "../../components/Header";
 import moment from "moment";
+import { toastError, toastSuccess } from "../../components/Toast";
+import { ToastContainer } from "react-toastify";
 
 interface IProfile {
     id: number
@@ -14,9 +16,12 @@ interface IProfile {
     account: number
     phone: string
     ativated: string
-    validate: string
+    validateInsider: string
     balance: number
     balanceToday: number
+    broker: string
+    validateExplicitus: string
+    validatePoupDobrada: string
 }
 
 function Adm() {
@@ -37,18 +42,17 @@ function Adm() {
         try {
             api.delete(`/user/${e}`).then(result => {
                 setUpdateList(true)
-
+                toastSuccess("Usuário deletado com sucesso")
             })
         } catch (error) {
-            console.log('Erro ao deletar')
-
+            toastError("Erro ao deletar usuário")
         }
     }
 
-    const adjustData = (e: string) =>{
-        const adjDate:Date = new Date(e)
-        
-        return moment(adjDate).format("DD/MM/YYYY")
+    const adjustData = (e: string) => {
+        const adjDate: Date = new Date(e)
+        const today: Date = new Date()
+        return e === null ? "não assinante" : (adjDate < today ? "Assinatura vencida" : moment(adjDate).format("DD/MM/YYYY"))
     }
     useEffect(() => {
         if (getAdminKey() !== "Eu sou administrador") {
@@ -72,19 +76,16 @@ function Adm() {
     return (
         <div>
             <Header />
+            <ToastContainer />
             <button onClick={() => history('/create')}>Cadastrar</button>
             {dataValue && dataValue.map((dataValues, index) => (
                 <List key={index}>
                     <MiniDiv>
-                        <Text>Nome</Text>
                         <Text>{dataValues.name}</Text>
-                    </MiniDiv>
-                    <MiniDiv>
-                        <Text>Email</Text>
                         <Text>{dataValues.email}</Text>
                     </MiniDiv>
                     <MiniDiv>
-                        <Text>Nº da Conta</Text>
+                        <Text>{dataValues.broker}</Text>
                         <Text>{dataValues.account}</Text>
                     </MiniDiv>
                     <MiniDiv>
@@ -92,8 +93,16 @@ function Adm() {
                         <Text>{dataValues.phone}</Text>
                     </MiniDiv>
                     <MiniDiv>
-                        <Text>Validade</Text>
-                        <Text>{adjustData(dataValues.validate)}</Text>
+                        <Text>Insider</Text>
+                        <Text>{adjustData(dataValues.validateInsider)}</Text>
+                    </MiniDiv>
+                    <MiniDiv>
+                        <Text>Explicitus</Text>
+                        <Text>{adjustData(dataValues.validateExplicitus)}</Text>
+                    </MiniDiv>
+                    <MiniDiv>
+                        <Text>Poup.Dobrada</Text>
+                        <Text>{adjustData(dataValues.validatePoupDobrada)}</Text>
                     </MiniDiv>
                     <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
                         <button onClick={() => {
