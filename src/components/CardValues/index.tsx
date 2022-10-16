@@ -19,8 +19,24 @@ export function CardValues(props: IProps) {
     useEffect(() => {
         try {
             api.get(`balance/${getID()}`,).then(result => {
-                setValueClosed(result.data[0].closedOrders)
-                setValueOpen(result.data[0].openOrders)
+                if (props.title === 'Insider') {
+                    setValueClosed(result.data[0].closedOrdersInsider)
+                    setValueOpen(result.data[0].openOrdersInsider)
+                }
+                if (props.title === 'Explicitus') {
+                    setValueClosed(result.data[0].closedOrdersExplicitus)
+                    setValueOpen(result.data[0].openOrdersExplicitus)
+                }
+                if (props.title === 'Poupança Dobrada') {
+                    setValueClosed(result.data[0].closedOrdersPoupDobrada)
+                    setValueOpen(result.data[0].openOrdersPoupDobrada)
+                }
+                if (props.title === 'Resumo da Conta') {
+                    const totalClose = result.data[0].closedOrdersPoupDobrada + result.data[0].closedOrdersExplicitus + result.data[0].closedOrdersInsider
+                    const totalOpen = result.data[0].openOrdersExplicitus + result.data[0].openOrdersInsider + result.data[0].openOrdersPoupDobrada
+                    setValueClosed(totalClose)
+                    setValueOpen(totalOpen)
+                }
             })
 
         } catch (error) {

@@ -31,22 +31,23 @@ function Form() {
     useEffect(() => {
         try {
             api.get(`/user/${location.state.id}`).then((result) => {
-                setName(result.data.name);
-                setEmail(result.data.email);
-                setAccount(result.data.account)
-                setAdmin(result.data.administrator)
-                setPhone(result.data.phone)
-                setValidateInsider(result.data.validateInsider)
-                setCheckboxAdm(result.data.administrator !== "Eu sou administrador" ? false : true)
-                setAtivated(result.data.ativated)
-                setMultpInsider(result.data.multpInsider)
-                setMultpExplicitus(result.data.multpExplicitus)
-                setValidateExplicitus(result.data.validateExplicitus)
-                setMultpPoupDobrada(result.data.multpPoupDobrada)
-                setValidatePoupDobrada(result.data.validatePoupDobrada)
-                setDescription(result.data.description)
-                setPassBroken(result.data.passBroker)
-                setBroken(result.data.broker)
+                console.log(result.data)
+                setName(result.data.customer.name);
+                setEmail(result.data.customer.email);
+                setAccount(result.data.customer.account)
+                setAdmin(result.data.customer.administrator)
+                setPhone(result.data.customer.phone)
+                setValidateInsider(result.data.customer.validateInsider)
+                setCheckboxAdm(result.data.customer.administrator !== "Eu sou administrador" ? false : true)
+                setAtivated(result.data.customer.ativated)
+                setMultpInsider(result.data.customer.multpInsider)
+                setMultpExplicitus(result.data.customer.multpExplicitus)
+                setValidateExplicitus(result.data.customer.validateExplicitus)
+                setMultpPoupDobrada(result.data.customer.multpPoupDobrada)
+                setValidatePoupDobrada(result.data.customer.validatePoupDobrada)
+                setDescription(result.data.customer.description)
+                setPassBroken(result.data.customer.passBroker)
+                setBroken(result.data.customer.broker)
             });
         } catch (error) {
             console.log(error);
@@ -101,6 +102,7 @@ function Form() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Header />
             <ToastContainer />
+            <h1>Alterar usuário</h1>
             <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', marginRight: '50px' }}>
                     <Text>Nome</Text>
@@ -168,7 +170,7 @@ function Form() {
                 </div>
             </div>
             <div>
-                <button onClick={() => history("/adm")}>Voltar</button>
+                <button style={{backgroundColor:'red', margin:'30px'}} onClick={() => history("/adm")}>Voltar</button>
                 <button onClick={SaveData}>Salvar</button>
             </div>
         </div>

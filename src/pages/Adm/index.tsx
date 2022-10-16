@@ -77,7 +77,10 @@ function Adm() {
         <div>
             <Header />
             <ToastContainer />
-            <button onClick={() => history('/create')}>Cadastrar</button>
+            <div style={{ width: '100%', display: 'flex' }}>
+                <button onClick={() => history('/create')}>Cadastrar</button>
+            </div>
+            <h1>Usuários cadastrados</h1>
             {dataValue && dataValue.map((dataValues, index) => (
                 <List key={index}>
                     <MiniDiv>
@@ -104,20 +107,18 @@ function Adm() {
                         <Text>Poup.Dobrada</Text>
                         <Text>{adjustData(dataValues.validatePoupDobrada)}</Text>
                     </MiniDiv>
-                    <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
+                    <div style={{ width: '100%', display: 'flex', flexDirection: 'row', margin:'20px' }}>
                         <button onClick={() => {
                             changeUser(dataValues.id);
                         }}>Perfil</button>
-                        {/*<ButtonAction onClick={() => {
-                        AddValueMonth(dataValues.id);
-                    }}>Saldo</ButtonAction>*/}
-                        <button onClick={() => {
+                        {/*<button onClick={() => {
                             deleteUser(dataValues.id);
-                        }} style={{ backgroundColor: 'red' }} >Deletar</button>
-                    </div>
+                        }} style={{ backgroundColor: `${dataValues.ativated==="N"?'red':'blue'}` }} >{dataValues.ativated==="N"?'Inativo':'Ativo'}</button>*/}
+                </div>
                 </List>
-            ))}
-        </div>
+    ))
+}
+        </div >
     )
 }
 

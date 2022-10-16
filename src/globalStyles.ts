@@ -85,7 +85,7 @@ export const Button = styled.button`
     height: 30px;
     font-size: 1.125em;
     background-color: ${gold};
-    color: ${primary};
+    color: ${white};
     border: 5px;
     font-weight: bolder;
     margin: 10px;   
@@ -126,6 +126,17 @@ export const List = styled.li`
   text-align: center;
   @media only screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
+}
+`;
+
+export const MainCards = styled.div`
+display: flex;
+flex-direction: row;
+width: 100vw;
+justify-content: space-around; 
+
+@media only screen and (max-width: 1000px) {
+    flex-direction:column;
 }
 `;
 

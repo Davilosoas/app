@@ -2,7 +2,7 @@ import React from "react";
 import { getAdminKey, logoutToken } from "../../services/auth";
 import { useNavigate } from 'react-router-dom'
 import newLogo from '../../assets/robotic-logo.png'
-import { ToastContainer } from 'react-toastify';
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 import 'react-toastify/dist/ReactToastify.css';
 
 function Header() {
@@ -17,8 +17,8 @@ function Header() {
     return (
         <div style={{ width: '95%', height: '65px', display: 'flex', flexDirection: 'row', textAlign: 'right', marginBottom: '10px', padding: '30px 30px 0px 30px', justifyContent: 'space-between', borderBottom: '4px solid #e2aa2b' }}>
 
-            <div>
-                <img src={newLogo} alt="logo Jonas Marchioro" onClick={() => history('/main')} style={{ width: '300px', height: '169px', marginTop: '-60px', marginBottom: '50px', cursor: 'pointer' }} />
+            <div onClick={() => history('/main')} style={{cursor:'pointer'}}>
+                <Logo style={{ width: '200px', height: '100px',marginTop:'-30px',marginLeft:'-30px' }} />
             </div>
             <div>
                 {adm() && <span style={{ marginRight: '20px', cursor: 'pointer' }}

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { Button, Card, Container, H3, Input, P1 } from '../../globalStyles'
-import { ReactComponent as Logo } from '../../assets/logo-blue.svg'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 import api from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { setAdminKey, setID, setName, setToken } from '../../services/auth'

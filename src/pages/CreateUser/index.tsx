@@ -46,9 +46,10 @@ function CreateUser() {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Header />
             <ToastContainer />
+            <h1>Criar usuário</h1>
             <form onSubmit={handleSubmit}>
                 <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
-                    <div style={{ margin: '50px' }}>
+                    <div style={{ margin: '10px 50px' }}>
                         {dataUser.map((dataUsers, index) => (
                             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', textAlign: 'left', alignItems: 'center' }}>
                                 <span>{dataUsers.nameField}</span>
@@ -105,7 +106,7 @@ function CreateUser() {
                         </fieldset>
                     </div>
                 </div>
-                <button onClick={() => history('/adm')}>Voltar</button>
+                <button style={{backgroundColor:'red', margin:'30px'}} onClick={() => history('/adm')}>Voltar</button>
                 <button type="submit">Salvar</button>
             </form>
         </div>
