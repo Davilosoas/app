@@ -31,7 +31,6 @@ function Form() {
     useEffect(() => {
         try {
             api.get(`/user/${location.state.id}`).then((result) => {
-                console.log(result.data)
                 setName(result.data.customer.name);
                 setEmail(result.data.customer.email);
                 setAccount(result.data.customer.account)

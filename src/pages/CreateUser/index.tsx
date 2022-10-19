@@ -25,7 +25,6 @@ function CreateUser() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        console.log(dataForm)
         try {
             api.post("/user", dataForm, {
                 headers: {
