@@ -65,7 +65,6 @@ function Adm() {
         }).then(result => {
             setDataValue(result.data)
             setUpdateList(false)
-            console.log(result.data)
         }).catch(error => {
 
             logoutToken()
