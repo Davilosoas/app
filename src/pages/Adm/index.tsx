@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { getAdminKey, getToken, logoutToken } from "../../services/auth";
-import { dataUser } from "../../utils/variableGlobal";
 import Header from "../../components/Header";
 import moment from "moment";
-import { toastError, toastSuccess } from "../../components/Toast";
 import { ToastContainer } from "react-toastify";
 
 interface IProfile {
@@ -30,29 +28,18 @@ function Adm() {
     const [dataValue, setDataValue] = useState<IProfile[]>([])
     const [updateList, setUpdateList] = useState<boolean>(false)
 
-    const initalState = dataUser.reduce(
-        (acc, next) => ({ ...acc, [next.nameField]: next.initalValue }),
-        {}
-    );
-
     const changeUser = (id: number) => {
         history("/change", { state: { id } });
-    }
-    const deleteUser = (e: number) => {
-        try {
-            api.delete(`/user/${e}`).then(result => {
-                setUpdateList(true)
-                toastSuccess("Usuário deletado com sucesso")
-            })
-        } catch (error) {
-            toastError("Erro ao deletar usuário")
-        }
     }
 
     const adjustData = (e: string) => {
         const adjDate: Date = new Date(e)
+        return e === null ? "Não assinante" :  moment(adjDate).format("DD/MM/YYYY")
+    }
+    const colorAdjustData = (e: string) => {
+        const adjDate: Date = new Date(e)
         const today: Date = new Date()
-        return e === null ? "não assinante" : (adjDate < today ? "Assinatura vencida" : moment(adjDate).format("DD/MM/YYYY"))
+        return e === null ? "white" : (adjDate < today ? "red" : "green")
     }
     useEffect(() => {
         if (getAdminKey() !== "Eu sou administrador") {
@@ -96,15 +83,15 @@ function Adm() {
                     </MiniDiv>
                     <MiniDiv>
                         <Text>Insider</Text>
-                        <Text>{adjustData(dataValues.validateInsider)}</Text>
+                        <Text style={{color:`${colorAdjustData(dataValues.validateInsider)}`}}>{adjustData(dataValues.validateInsider)}</Text>
                     </MiniDiv>
                     <MiniDiv>
                         <Text>Explicitus</Text>
-                        <Text>{adjustData(dataValues.validateExplicitus)}</Text>
+                        <Text style={{color:`${colorAdjustData(dataValues.validateExplicitus)}`}}>{adjustData(dataValues.validateExplicitus)}</Text>
                     </MiniDiv>
                     <MiniDiv>
                         <Text>Poup.Dobrada</Text>
-                        <Text>{adjustData(dataValues.validatePoupDobrada)}</Text>
+                        <Text style={{color:`${colorAdjustData(dataValues.validatePoupDobrada)}`}}>{adjustData(dataValues.validatePoupDobrada)}</Text>
                     </MiniDiv>
                     <div style={{ width: '100%', display: 'flex', flexDirection: 'row', margin:'20px' }}>
                         <button onClick={() => {
