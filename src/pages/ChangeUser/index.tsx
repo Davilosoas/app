@@ -116,6 +116,8 @@ function Form() {
                     <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setAccount(e.target.value)} value={account} />
                     <Text>Senha corretora</Text>
                     <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setPassBroken(e.target.value)} value={passBroker} />
+                    <Text>Observação</Text>
+                    <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} value={description} />
 
                     <div>
                         <input

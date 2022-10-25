@@ -16,6 +16,7 @@ function Main() {
         "assignExplicitus": false,
         "assignPoupDobrada": false
     })
+
     useEffect(() => {
 
         api.get(`/user/${getID()}`,).then(result => {
@@ -43,7 +44,14 @@ function Main() {
                 <CardValues title="Resumo da Conta" />
             </div>
             <span>Fale com o nosso suporte</span>
-            <img src={require('../../assets/whatsapp.png')} alt="Logo do whatsatpp" style={{width:'50px',height:'50px', cursor:'pointer'}}/>
+            <a
+                href="https://wa.me/5551981758799"
+                className="whatsapp_float"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+            <img src={require('../../assets/whatsapp.png')} alt="Logo do whatsatpp" style={{ width: '50px', height: '50px', cursor: 'pointer' }} />
+            </a>
         </Container>
     )
 }
