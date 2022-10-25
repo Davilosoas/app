@@ -4,7 +4,7 @@ import api from "../../services/api";
 import { useParams, useNavigate } from 'react-router-dom';
 import { toastError, toastSuccess } from '../../components/Toast';
 import { ToastContainer } from 'react-toastify';
-
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 
 export function ResetPass(props: any) {
     const [password, setPassword] = useState<String>('')
@@ -32,6 +32,7 @@ export function ResetPass(props: any) {
             display: 'flex', flexDirection: 'column', alignItems: 'center'
         }}>
             <ToastContainer />
+            <Logo width={300} height={150} />
             <h1>Alterar Senha</h1>
             <span>Insira sua senha</span>
             <input onChange={e => setPassword(e.target.value)} />
