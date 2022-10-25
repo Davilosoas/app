@@ -5,7 +5,7 @@ import api from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { setAdminKey, setID, setName, setToken } from '../../services/auth'
 import { ToastContainer } from 'react-toastify'
-import { toastSuccess } from "../../components/Toast";
+import { toastError, toastSuccess } from "../../components/Toast";
 
 function Login() {
     const history = useNavigate()
@@ -29,7 +29,7 @@ function Login() {
             }).then(() => setTimeout(() => history("/main"), 4000))
 
         } catch (error) {
-            console.log(error)
+            toastError("E-mail ou senha inválida")
         }
     }
 
@@ -45,7 +45,7 @@ function Login() {
                         <Input type={'email'} onChange={e => setEmail(e.target.value)} />
                         <H3>Senha</H3>
                         <Input type={'password'} onChange={e => setPassword(e.target.value)} />
-                        <P1>Esqueci minha senha</P1>
+                        <P1 style={{cursor:'pointer'}} onClick={() => history('/forgot')}>Esqueci minha senha</P1>
                         <Button type='submit'>Acessar</Button>
                     </form>
                 </Card>

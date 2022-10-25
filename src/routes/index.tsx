@@ -5,6 +5,8 @@ import ChangeUser from "../pages/ChangeUser";
 import CreateUser from "../pages/CreateUser";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
+import { ResetPass } from "../pages/Reset";
+import { SendChangePass } from "../pages/SendChangePass";
 
 const Router = () => (
     <BrowserRouter>
@@ -13,6 +15,8 @@ const Router = () => (
             <Route path='/create' element={<CreateUser />} />
             <Route path='/change' element={<ChangeUser />} />
             <Route path='/main' element={<Main />} />
+            <Route path='/forgot' element={<SendChangePass />} />
+            <Route path='/reset/:email/:token' element={<ResetPass />} />
             <Route path='/adm' element={<Adm />} />
             <Route path='*' element={<Login />} />
         </Routes>
