@@ -9,8 +9,8 @@ interface IProps {
 }
 export function CardValues(props: IProps) {
 
-    const [valueOpen, setValueOpen] = useState("0,00")
-    const [valueClosed, setValueClosed] = useState("0,00")
+    const [valueOpen, setValueOpen] = useState<number>(0)
+    const [valueClosed, setValueClosed] = useState<number>(0)
 
     const colors = (e: number) => {
         return e >= 0 ? '#7CFC00' : 'red'
@@ -50,13 +50,13 @@ export function CardValues(props: IProps) {
                 <h3>Saldo operações em aberto</h3>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
                     <span>Valor</span>
-                    <span style={{ fontSize: '24px', color: colors(parseFloat(valueOpen)) }}>R${valueOpen}</span>
+                    <span style={{ fontSize: '24px', color: colors(valueOpen) }}>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valueOpen)}</span>
                 </div>
 
                 <h3>Saldo operações encerradas</h3>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
                     <span>Valor</span>
-                    <span style={{ fontSize: '24px', color: colors(parseFloat(valueClosed)) }}>R${valueClosed}</span>
+                    <span style={{ fontSize: '24px', color: colors(valueClosed) }}>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valueClosed)}</span>
                 </div>
             </CardBot>
         </div>
