@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { useNavigate, useLocation } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import Header from "../../components/Header";
@@ -24,6 +24,7 @@ function Form() {
     const [broker, setBroken] = useState<string>('')
 
     const [checkboxAdm, setCheckboxAdm] = useState<boolean>(false)
+    const [checkboxTester, setCheckboxTester] = useState<boolean>(false)
     const history = useNavigate()
     const location = useLocation()
 
@@ -38,6 +39,7 @@ function Form() {
                 setPhone(result.data.customer.phone)
                 setValidateInsider(result.data.customer.validateInsider)
                 setCheckboxAdm(result.data.customer.administrator !== "Eu sou administrador" ? false : true)
+                setCheckboxTester(result.data.customer.administrator !== "Tester" ? false : true)
                 setAtivated(result.data.customer.ativated)
                 setMultpInsider(result.data.customer.multpInsider)
                 setMultpExplicitus(result.data.customer.multpExplicitus)
@@ -90,10 +92,22 @@ function Form() {
     const handleCheckbox = () => {
         if (checkboxAdm === false) {
             setCheckboxAdm(true)
+            setCheckboxTester(false)
             setAdmin("Eu sou administrador")
         }
         else {
             setCheckboxAdm(false)
+            setAdmin("N")
+        }
+    }
+    const handleCheckboxTester = () => {
+        if (checkboxTester === false) {
+            setCheckboxAdm(false)
+            setCheckboxTester(true)
+            setAdmin("Tester")
+        }
+        else {
+            setCheckboxTester(false)
             setAdmin("N")
         }
     }
@@ -126,6 +140,14 @@ function Form() {
                             onChange={handleCheckbox}
                         />
                         <span>Usuário administrador</span>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox" style={{ width: '20px', height: '20px' }}
+                            checked={checkboxTester}
+                            onChange={handleCheckboxTester}
+                        />
+                        <span>Conta teste</span>
                     </div>
                 </div>
                 <div>

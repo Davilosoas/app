@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { CardBot } from "../../globalStyles"
 import api from "../../services/api"
 import { getID } from "../../services/auth"
@@ -8,7 +9,7 @@ interface IProps {
     title: string
 }
 export function CardValues(props: IProps) {
-
+    const location = useLocation()
     const [valueOpen, setValueOpen] = useState<number>(0)
     const [valueClosed, setValueClosed] = useState<number>(0)
 
@@ -18,7 +19,7 @@ export function CardValues(props: IProps) {
 
     useEffect(() => {
         try {
-            api.get(`balance/${getID()}`,).then(result => {
+            api.get(`balance/${location.state == null ? getID() : location.state.id}`,).then(result => {
                 if (props.title === 'Insider') {
                     setValueClosed(result.data[0].closedOrdersInsider)
                     setValueOpen(result.data[0].openOrdersInsider)
@@ -50,13 +51,13 @@ export function CardValues(props: IProps) {
                 <h3>Saldo operações em aberto</h3>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
                     <span>Valor</span>
-                    <span style={{ fontSize: '24px', color: colors(valueOpen) }}>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valueOpen)}</span>
+                    <span style={{ fontSize: '24px', color: colors(valueOpen) }}>{Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(valueOpen)}</span>
                 </div>
 
                 <h3>Saldo operações encerradas</h3>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
                     <span>Valor</span>
-                    <span style={{ fontSize: '24px', color: colors(valueClosed) }}>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valueClosed)}</span>
+                    <span style={{ fontSize: '24px', color: colors(valueClosed) }}>{Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(valueClosed)}</span>
                 </div>
             </CardBot>
         </div>

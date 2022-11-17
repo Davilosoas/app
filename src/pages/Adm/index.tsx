@@ -31,6 +31,9 @@ function Adm() {
     const changeUser = (id: number) => {
         history("/change", { state: { id } });
     }
+    const saldoUser = (id: number) => {
+        history("/main", { state: { id } });
+    }
 
     const adjustData = (e: string) => {
         const adjDate: Date = new Date(e)
@@ -97,6 +100,9 @@ function Adm() {
                         <button onClick={() => {
                             changeUser(dataValues.id);
                         }}>Perfil</button>
+                        <button onClick={() => {
+                            saldoUser(dataValues.id);
+                        }}>Saldo</button>
                         {/*<button onClick={() => {
                             deleteUser(dataValues.id);
                         }} style={{ backgroundColor: `${dataValues.ativated==="N"?'red':'blue'}` }} >{dataValues.ativated==="N"?'Inativo':'Ativo'}</button>*/}

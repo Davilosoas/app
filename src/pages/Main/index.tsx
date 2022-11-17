@@ -3,14 +3,16 @@ import { CardValues } from "../../components/CardValues"
 import Header from "../../components/Header"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
-import { getID } from "../../services/auth"
+import { getAdminKey, getID } from "../../services/auth"
 import { CardEmpty } from "../../components/CardEmpty"
+import { useLocation } from "react-router-dom"
 interface IData {
     assignInsider: boolean
     assignExplicitus: boolean
     assignPoupDobrada: boolean
 }
 function Main() {
+    const location = useLocation()
     const [data, setData] = useState<IData>({
         "assignInsider": true,
         "assignExplicitus": false,
@@ -19,7 +21,7 @@ function Main() {
 
     useEffect(() => {
 
-        api.get(`/user/${getID()}`,).then(result => {
+        api.get(`/user/${location.state == null ? getID() : location.state.id}`,).then(result => {
             setData(result.data.validate)
         })
 
@@ -30,6 +32,9 @@ function Main() {
         return e === true ? <CardValues title={name} /> : <CardEmpty title={name} />
     }
 
+    const adm = () => {
+        return getAdminKey() !== "Tester" ? true : false
+    }
     return (
         <Container style={{ flexDirection: 'column', alignItems: 'center' }}>
             <Header />
@@ -43,15 +48,19 @@ function Main() {
                 <h3 style={{ borderBottom: '2px solid #e2aa2b' }}>Este é o resumo da sua conta, a soma de todo o seu lucro conosco</h3>
                 <CardValues title="Resumo da Conta" />
             </div>
-            <span>Fale com o nosso suporte</span>
-            <a
-                href="https://wa.me/5551981758799"
-                className="whatsapp_float"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-            <img src={require('../../assets/whatsapp.png')} alt="Logo do whatsatpp" style={{ width: '50px', height: '50px', cursor: 'pointer' }} />
-            </a>
+            {adm() &&
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span>Fale com o nosso suporte</span>
+                    <a
+                        href="https://wa.me/5551981758799"
+                        className="whatsapp_float"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img src={require('../../assets/whatsapp.png')} alt="Logo do whatsatpp" style={{ width: '50px', height: '50px', cursor: 'pointer' }} />
+                    </a>
+                </div>
+            }
         </Container>
     )
 }

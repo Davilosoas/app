@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import api from "../../services/api";
 import { useNavigate } from 'react-router-dom'
 import { dataUser } from "../../utils/variableGlobal";

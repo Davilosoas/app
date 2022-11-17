@@ -45,7 +45,7 @@ function Login() {
                         <Input type={'email'} onChange={e => setEmail(e.target.value)} />
                         <H3>Senha</H3>
                         <Input type={'password'} onChange={e => setPassword(e.target.value)} />
-                        <P1 style={{cursor:'pointer'}} onClick={() => history('/forgot')}>Esqueci minha senha</P1>
+                        {/*P1 style={{cursor:'pointer'}} onClick={() => history('/forgot')}>Esqueci minha senha</P1>*/}
                         <Button type='submit'>Acessar</Button>
                     </form>
                 </Card>
