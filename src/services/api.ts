@@ -2,7 +2,8 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api = axios.create({
-    baseURL: "https://robotictrader.online/api"
+    // baseURL: "https://robotictrader.online/api"
+    baseURL: "https://skillinginvest.app/api"
     // baseURL: "http://localhost:5000"
 })
 
