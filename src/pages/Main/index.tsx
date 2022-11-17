@@ -38,7 +38,7 @@ function Main() {
     return (
         <Container style={{ flexDirection: 'column', alignItems: 'center' }}>
             <Header />
-            <h1>Visualize seus lucros</h1>
+            <h1>Visualize seus lucros</h1> 
             <MainCards >
                 {validateCard(data.assignInsider, "Insider")}
                 {validateCard(data.assignExplicitus, "Explicitus")}
