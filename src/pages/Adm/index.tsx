@@ -42,7 +42,7 @@ function Adm() {
     const colorAdjustData = (e: string) => {
         const adjDate: Date = new Date(e)
         const today: Date = new Date()
-        return e === null ? "white" : (adjDate < today ? "red" : "green")
+        return e === null ? "white" : (adjDate < today ? "#F84F31" : "#23C552")
     }
     useEffect(() => {
         if (getAdminKey() !== "Eu sou administrador") {
@@ -103,9 +103,6 @@ function Adm() {
                         <button onClick={() => {
                             saldoUser(dataValues.id);
                         }}>Saldo</button>
-                        {/*<button onClick={() => {
-                            deleteUser(dataValues.id);
-                        }} style={{ backgroundColor: `${dataValues.ativated==="N"?'red':'blue'}` }} >{dataValues.ativated==="N"?'Inativo':'Ativo'}</button>*/}
                 </div>
                 </List>
     ))

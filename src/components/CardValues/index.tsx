@@ -14,7 +14,7 @@ export function CardValues(props: IProps) {
     const [valueClosed, setValueClosed] = useState<number>(0)
 
     const colors = (e: number) => {
-        return e >= 0 ? '#7CFC00' : 'red'
+        return e >= 0 ? '#23C552' : '#F84F31'
     }
 
     useEffect(() => {

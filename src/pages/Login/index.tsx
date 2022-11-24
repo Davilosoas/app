@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react'
 import { Button, Card, Container, H3, Input, P1 } from '../../globalStyles'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
+import logosk from '../../assets/logosk.jpeg'
 import api from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { setAdminKey, setID, setName, setToken } from '../../services/auth'
@@ -37,7 +38,8 @@ function Login() {
     return (
         <Container>
             <div>
-                <Logo width={300} height={150} />
+                <img src={logosk} alt="Logo" style={{ width: '300px', height: '100px', marginTop:'10%' }} />
+                {/*<Logo width={300} height={150} />*/}
                 <ToastContainer />
                 <Card>
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>

@@ -193,7 +193,7 @@ function Form() {
                 </div>
             </div>
             <div>
-                <button style={{backgroundColor:'red', margin:'30px'}} onClick={() => history("/adm")}>Voltar</button>
+                <button style={{backgroundColor:'#F84F31', margin:'30px'}} onClick={() => history("/adm")}>Voltar</button>
                 <button onClick={SaveData}>Salvar</button>
             </div>
         </div>

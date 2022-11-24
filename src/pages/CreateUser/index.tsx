@@ -105,7 +105,7 @@ function CreateUser() {
                         </fieldset>
                     </div>
                 </div>
-                <button style={{backgroundColor:'red', margin:'30px'}} onClick={() => history('/adm')}>Voltar</button>
+                <button style={{backgroundColor:'#F84F31', margin:'30px'}} onClick={() => history('/adm')}>Voltar</button>
                 <button type="submit">Salvar</button>
             </form>
         </div>
